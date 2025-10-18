@@ -1,0 +1,14 @@
+# 是否开启模块 [true - 开启,false - 关闭]
+# -----
+#加入消息
+JoinMessage:
+  Enable: true
+# 退出消息
+QuitMessage:
+  Enable: true
+# 死亡消息(广播, 向全体玩家发送)
+DeathBroadcast:
+  Enable: true
+# 死亡消息(私信, 向死亡玩家发送)
+DeathMsg:
+  Enable: true

@@ -1,0 +1,9 @@
+name: HNPlugin
+version: '${project.version}'
+author: NiceHello
+main: org.hnplugin.hnplugin.HNPlugin
+commands:
+  hnplugin:
+    description: "HN插件主命令"
+    permission: op
+    aliases: hnp
