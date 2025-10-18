@@ -28,7 +28,7 @@ DeathMsg:
 ## lang.yml
 ```
 # 插件前缀
-Prefix: "&b&lHNC &f&7>&f"
+Prefix: "&b&lHNPlugin &f&7>&f"
 # 重载提示
 ReloadMessage: "%prefix% &a插件已重载!"
 # 加入提示 [可用变量符: %player% - 玩家名,%prefix% - 插件前缀]
