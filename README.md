@@ -36,7 +36,7 @@ JoinMessage: "&8[&a+&8] &7%player%"
 # 退出提示 [可用变量符: %player% - 玩家名,%prefix% - 插件前缀]
 QuitMessage: "&8[&c-&8] &7%player%"
 # 公告的前缀 [可用变量符: %prefix% - 插件前缀]
-BCPrefix: "%prefix% &b[公告] %player% > &f"
+BCPrefix: "%prefix% &b[公告] &f"
 # 死亡消息(广播, 向全体玩家发送) [可用变量符: %player% - 玩家名,%prefix% - 插件前缀,%death_x% - 死亡的x轴,%death_y% - 死亡的y轴,%death_z% - 死亡的z轴]
 DeathBroadcast: "%prefix% &e%player% 消逝了"
 # 死亡消息(私信, 向死亡玩家发送) [可用变量符: %player% - 玩家名,%prefix% - 插件前缀,%death_x% - 死亡的x轴,%death_y% - 死亡的y轴,%death_z% - 死亡的z轴]
