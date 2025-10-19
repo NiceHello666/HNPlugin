@@ -6,7 +6,7 @@
 
     <groupId>org.hnplugin</groupId>
     <artifactId>HNPlugin</artifactId>
-    <version>1.2</version>
+    <version>1.2 patch-1</version>
     <packaging>jar</packaging>
 
     <name>HNPlugin</name>

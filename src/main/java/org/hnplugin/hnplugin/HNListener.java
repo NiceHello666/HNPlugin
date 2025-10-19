@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
 import java.io.File;
+
 
 public class HNListener implements Listener {
     @EventHandler
@@ -58,6 +58,7 @@ public class HNListener implements Listener {
                     .replace("%death_x%", String.valueOf(death_loc.getBlockX()))
                     .replace("%death_y%", String.valueOf(death_loc.getBlockY()))
                     .replace("%death_z%", String.valueOf(death_loc.getBlockZ()))
+                    .replace("%death_world%", String.valueOf(death_loc.getWorld()).replaceAll(".*name=([^}]+).*", "$1"))
                     .replace("&", "§");
             Death.setDeathMessage(broadcastMsg);
         }
@@ -69,6 +70,7 @@ public class HNListener implements Listener {
                     .replace("%death_x%", String.valueOf(death_loc.getBlockX()))
                     .replace("%death_y%", String.valueOf(death_loc.getBlockY()))
                     .replace("%death_z%", String.valueOf(death_loc.getBlockZ()))
+                    .replace("%death_world%", String.valueOf(death_loc.getWorld()).replaceAll(".*name=([^}]+).*", "$1"))
                     .replace("&", "§");
             Death.getEntity().sendMessage(privateMsg);
         }
