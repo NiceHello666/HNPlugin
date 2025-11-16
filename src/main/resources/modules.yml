@@ -12,3 +12,6 @@ DeathBroadcast:
 # 死亡消息(私信, 向死亡玩家发送)
 DeathMsg:
   Enable: true
+# 自杀功能
+Suicide:
+  Enable: true

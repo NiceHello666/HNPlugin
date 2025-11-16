@@ -5,5 +5,8 @@ main: org.hnplugin.hnplugin.HNPlugin
 commands:
   hnplugin:
     description: "HN插件主命令"
-    permission: op
+    permission: hnplugin.command.main
     aliases: hnp
+  suicide:
+    description: "自杀指令"
+    permission: hnplugin.command.suicide

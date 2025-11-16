@@ -2,6 +2,7 @@ package org.hnplugin.hnplugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.hnplugin.hnplugin.metrics.Metrics;
 
 public final class HNPlugin extends JavaPlugin {
 
@@ -9,6 +10,8 @@ public final class HNPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         main = this;
+        int pluginId = 27811;
+        Metrics metrics = new Metrics(this, pluginId);
         java.util.logging.Logger logger = java.util.logging.Logger.getLogger("");
         java.util.logging.Level oldLevel = logger.getLevel();
         logger.setLevel(java.util.logging.Level.OFF);
@@ -17,6 +20,7 @@ public final class HNPlugin extends JavaPlugin {
         logger.setLevel(oldLevel);
         System.out.println("§b§lHNPlugin §f§f> §a插件已启动 §7| §e作者: NiceHello");
         Bukkit.getPluginCommand("hnplugin").setExecutor(new HNCommand());
+        Bukkit.getPluginCommand("suicide").setExecutor(new Suicide());
         Bukkit.getPluginManager().registerEvents(new HNListener(), this);
     }
     @Override
