@@ -1,7 +1,5 @@
 # HNPlugin
 
-相关代码已在 https://github.com/NiceHello666/HNPlugin 开源
-
 ## 目前实现功能：
 
 ### - 修改上线下线消息
