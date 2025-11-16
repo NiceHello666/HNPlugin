@@ -34,7 +34,7 @@ DeathMsg:
  Enable: true
 # 自杀功能
 Suicide:
-Enable: true
+ Enable: true
 
 ```
 
