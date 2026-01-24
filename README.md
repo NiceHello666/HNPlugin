@@ -1,16 +1,26 @@
 # HNPlugin
 
+相关代码已在 https://github.com/NiceHello666/HNPlugin 开源
+
 ## 目前实现功能：
 
-### - 修改上线下线消息
+### - 修改加入退出消息
 
 ### - 发送公告
 
 ### - 自定义死亡消息
 
+### - 紫砂指令
+
+### - 强制玩家执行指令
+
+### - 以控制台身份执行指令
+
+### - 死亡世界名字替换
 
 
-# 自v1.3版本开始，需要重置lang.yml和modules.yml文件，注意哦！
+
+# 如果你是旧版到v1.4的升级，你需要手动补全在lang.yml与modules.yml缺失的项，或者重置文件
 
 
 
@@ -46,9 +56,21 @@ DeathMsg:
 
  Enable: true
 
-# 自杀功能
+# 自杀功能(/suicide)
 
 Suicide:
+
+ Enable: true
+
+# 强制执行指令功能(/sudo)
+
+Sudo:
+
+ Enable: true
+
+# 以控制台身份执行指令
+
+Console:
 
  Enable: true
 
@@ -100,6 +122,28 @@ DeathMsg: "%prefix% &e你消逝了,死亡点在%death_world%, %death_x%, %death_
 
 SuicideBroadcast:  "%prefix% &c%player% 自杀了..."
 
+# 在执行人需要输入玩家名却写错时出现此消息 [可用变量符: %prefix% - 插件前缀]
+
+WrongPlayer: "%prefix% &c未找到玩家"
+
+# 强制执行指令(/sudo)执行成功提示 [可用变量符: %sudocmd% - 执行的指令,%sudoplayer% - 被强制执行指令的玩家,%prefix% - 插件前缀]
+
+SudoFeedBack: "%prefix% &a你已使 &e%sudoplayer% &a强制执行 &e%sudocmd%"
+
+# 以控制台身份执行指令反馈 [可用变量符: %consolecmd% - 执行的指令,%prefix% - 插件前缀]
+
+ConsoleCommandFeedBack: "%prefix% &a你以控制台身份执行了指令 &e%consolecmd%"
+
+# 插件世界变量符显示文本 [你可以自己加世界，仿照这个格式即可]
+
+WorldDisplayList:
+
+"world": "&a主世界"
+
+  "world_nether": "&c地狱世界"
+
+  "world_the_end": "&6末地世界"
+
 ```
 
 
@@ -109,3 +153,7 @@ SuicideBroadcast:  "%prefix% &c%player% 自杀了..."
  ### hnplugin.command.main - /hnp指令及其子命令
 
  ### hnplugin.command.suicide - /suicide自杀指令
+
+ ### hnplugin.command.sudo - /sudo强制玩家执行指令
+
+ ### hnplugin.command.console - /console以控制台身份执行指令
