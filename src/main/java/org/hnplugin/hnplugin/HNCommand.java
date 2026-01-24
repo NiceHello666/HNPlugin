@@ -1,6 +1,7 @@
 package org.hnplugin.hnplugin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -10,10 +11,12 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 
 public class HNCommand implements CommandExecutor {
+
+    FileConfiguration lang = HNPlugin.main.loadLang();
+
+
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        File lang = new File(org.hnplugin.hnplugin.HNPlugin.getPlugin(org.hnplugin.hnplugin.HNPlugin.class).getDataFolder(), "lang.yml");
-        FileConfiguration lang2 = YamlConfiguration.loadConfiguration(lang);
         if(commandSender.hasPermission("hnplugin.command.main")) {
             if (strings.length >= 2 && strings[0].equals("bc")) {
                 StringBuilder message = new StringBuilder();
@@ -23,21 +26,16 @@ public class HNCommand implements CommandExecutor {
                         message.append(" ");
                     }
                 }
-                String formattedMessage = message.toString()
-                        .replace("&", "§");
-                String bcprefix = lang2.getString(("BCPrefix"))
-                        .replace("%prefix%", lang2.getString("Prefix"))
-                        .replace("&", "§");
-                Bukkit.broadcastMessage(bcprefix + formattedMessage);
+                Bukkit.broadcastMessage(
+                        ChatColor.translateAlternateColorCodes('&', message.toString()
+                        +
+                        lang.getString("BCPrefix").replace("%prefix%", lang.getString("Prefix")))
+                );
 
                 return true;
             }
             if (strings.length == 1 && strings[0].equals("help")) {
-                commandSender.sendMessage((lang2.getString("Prefix") + " §6指令帮助")
-                        .replace("&", "§"));
-                commandSender.sendMessage("§e/hnp help - 显示这条消息");
-                commandSender.sendMessage("§e/hnp reload - 重载插件");
-                commandSender.sendMessage("§e/hnp bc <内容> - 发送公告");
+                HNPlugin.main.helpmsg(commandSender);
                 return true;
             }
             if (strings.length == 1 && strings[0].equals("reload")) {
@@ -47,18 +45,15 @@ public class HNCommand implements CommandExecutor {
                 HNPlugin.main.saveResource("lang.yml", false);
                 HNPlugin.main.saveResource("modules.yml", false);
                 logger.setLevel(oldLevel);
-                commandSender.sendMessage(lang2.getString("ReloadMessage")
-                        .replace("%prefix%", lang2.getString("Prefix"))
-                        .replace("&", "§"));
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("ReloadMessage")
+                        .replace("%prefix%", lang.getString("Prefix"))));
                 return true;
             }
-            commandSender.sendMessage(lang2.getString("Prefix")
-                    .replace("&", "§") + " §c未知指令，输入 /hnp help 查看帮助");
+            HNPlugin.main.helpmsg(commandSender);
             return true;
         }
-        commandSender.sendMessage(lang2.getString("NoPermission")
-                .replace("%prefix%", lang2.getString("Prefix"))
-                .replace("&", "§"));
+        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("NoPermission")
+                .replace("%prefix%", lang.getString("Prefix"))));
         return true;
     }
 }

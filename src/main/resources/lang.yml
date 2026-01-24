@@ -18,3 +18,14 @@ DeathBroadcast: "%prefix% &e%player% 消逝了"
 DeathMsg: "%prefix% &e你消逝了,死亡点在%death_world%, %death_x%, %death_y%, %death_z%"
 # 自杀广播 [可用变量符: %player% - 玩家名,%prefix% - 插件前缀]
 SuicideBroadcast:  "%prefix% &c%player% 自杀了..."
+# 在执行人需要输入玩家名却写错时出现此消息 [可用变量符: %prefix% - 插件前缀]
+WrongPlayer: "%prefix% &c未找到玩家"
+# 强制执行指令(/sudo)执行成功提示 [可用变量符: %sudocmd% - 执行的指令,%sudoplayer% - 被强制执行指令的玩家,%prefix% - 插件前缀]
+SudoFeedBack: "%prefix% &a你已使 &e%sudoplayer% &a强制执行 &e%sudocmd%"
+# 以控制台身份执行指令反馈 [可用变量符: %consolecmd% - 执行的指令,%prefix% - 插件前缀]
+ConsoleCommandFeedBack: "%prefix% &a你以控制台身份执行了指令 &e%consolecmd%"
+# 插件世界变量符显示文本 [你可以自己加世界，仿照这个格式即可]
+WorldDisplayList:
+  "world": "&a主世界"
+  "world_nether": "&c地狱世界"
+  "world_the_end": "&6末地世界"

@@ -10,3 +10,9 @@ commands:
   suicide:
     description: "自杀指令"
     permission: hnplugin.command.suicide
+  sudo:
+    description: "强制一个玩家执行命令"
+    permission: hnplugin.command.sudo
+  console:
+    description: "以控制台身份执行指令"
+    permission: hnplugin.command.console

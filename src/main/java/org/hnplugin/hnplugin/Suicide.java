@@ -1,43 +1,38 @@
 package org.hnplugin.hnplugin;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
-import java.io.File;
-
 public class Suicide implements CommandExecutor {
+
+    FileConfiguration lang = HNPlugin.main.loadLang();
+    FileConfiguration modules = HNPlugin.main.loadModules();
+    
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        File lang = new File(org.hnplugin.hnplugin.HNPlugin.getPlugin(org.hnplugin.hnplugin.HNPlugin.class).getDataFolder(), "lang.yml");
-        FileConfiguration lang2 = YamlConfiguration.loadConfiguration(lang);
-        File modules = new File(org.hnplugin.hnplugin.HNPlugin.getPlugin(org.hnplugin.hnplugin.HNPlugin.class).getDataFolder(), "modules.yml");
-        FileConfiguration modules2 = YamlConfiguration.loadConfiguration(modules);
         if (!(commandSender instanceof Player)) {
-            commandSender.sendMessage(lang2.getString("CantUseInConsole")
-                    .replace("%prefix%", lang2.getString("Prefix"))
-                    .replace("&", "§"));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("CantUseInConsole")
+                    .replace("%prefix%", lang.getString("Prefix"))));
             return true;
         } else {
             if (commandSender.hasPermission("hnplugin.command.suicide")) {
-                if (modules2.getBoolean("Suicide.Enable")) {
+                if (modules.getBoolean("Suicide.Enable")) {
                     Player player = (Player) commandSender;
                     player.setHealth(0);
-                    Bukkit.broadcastMessage(lang2
+                    Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', lang
                             .getString("SuicideBroadcast")
-                            .replace("%prefix%", lang2.getString("Prefix"))
-                            .replace("%player%", commandSender.getName())
-                            .replace("&", "§"));
+                            .replace("%prefix%", lang.getString("Prefix"))
+                            .replace("%player%", commandSender.getName())));
                     return true;
                 }
             }
-            commandSender.sendMessage(lang2.getString("NoPermission")
-                    .replace("%prefix%", lang2.getString("Prefix"))
-                    .replace("&", "§"));
+            commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("NoPermission")
+                    .replace("%prefix%", lang.getString("Prefix"))));
             return true;
         }
     }

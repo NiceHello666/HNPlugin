@@ -12,6 +12,12 @@ DeathBroadcast:
 # 死亡消息(私信, 向死亡玩家发送)
 DeathMsg:
   Enable: true
-# 自杀功能
+# 自杀功能(/suicide)
 Suicide:
+  Enable: true
+# 强制执行指令功能(/sudo)
+Sudo:
+  Enable: true
+# 以控制台身份执行指令
+Console:
   Enable: true
