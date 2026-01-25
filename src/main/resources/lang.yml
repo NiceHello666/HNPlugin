@@ -26,6 +26,6 @@ SudoFeedBack: "%prefix% &a你已使 &e%sudoplayer% &a强制执行 &e%sudocmd%"
 ConsoleCommandFeedBack: "%prefix% &a你以控制台身份执行了指令 &e%consolecmd%"
 # 插件世界变量符显示文本 [你可以自己加世界，仿照这个格式即可]
 WorldDisplayList:
-  "world": "&a主世界"
-  "world_nether": "&c地狱世界"
-  "world_the_end": "&6末地世界"
+  world: "&a主世界"
+  world_nether: "&c地狱世界"
+  world_the_end: "&6末地世界"

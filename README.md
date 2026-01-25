@@ -140,11 +140,11 @@ ConsoleCommandFeedBack: "%prefix% &a你以控制台身份执行了指令 &e%cons
 
 WorldDisplayList:
 
-"world": "&a主世界"
+  world: "&a主世界"
 
-  "world_nether": "&c地狱世界"
+  world_nether: "&c地狱世界"
 
-  "world_the_end": "&6末地世界"
+  world_the_end: "&6末地世界"
 
 ```
 
