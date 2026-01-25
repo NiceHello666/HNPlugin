@@ -1,12 +1,12 @@
 package org.hnplugin.hnplugin;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.hnplugin.hnplugin.metrics.Metrics;
 
 import java.io.File;
 
@@ -46,7 +46,7 @@ public final class HNPlugin extends JavaPlugin {
         this.saveResource("lang.yml", false);
         this.saveResource("modules.yml", false);
         logger.setLevel(oldLevel);
-        logger.info(ChatColor.translateAlternateColorCodes('&', "&b&lHNPlugin &f&f> &a插件已启动 &7| &e作者: NiceHello"));
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lHNPlugin &f&f> &a插件已启动 &7| &e作者: NiceHello"));
         Bukkit.getPluginCommand("hnplugin").setExecutor(new HNCommand());
         Bukkit.getPluginCommand("suicide").setExecutor(new Suicide());
         Bukkit.getPluginCommand("sudo").setExecutor(new Sudo());
@@ -55,6 +55,6 @@ public final class HNPlugin extends JavaPlugin {
     }
     @Override
     public void onDisable() {
-        Bukkit.getLogger().info(ChatColor.translateAlternateColorCodes('&', "&b&lHNPlugin &f&7> &c插件已关闭，欢迎下次使用!"));
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lHNPlugin &f&7> &c插件已关闭，欢迎下次使用!"));
     }
 }
