@@ -1,12 +1,12 @@
 package org.hnplugin.hnplugin;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.hnplugin.hnplugin.metrics.Metrics;
 
 import java.io.File;
 

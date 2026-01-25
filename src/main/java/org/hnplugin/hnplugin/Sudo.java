@@ -13,11 +13,10 @@ public class Sudo implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
         FileConfiguration modules = HNPlugin.main.loadModules();
+        FileConfiguration lang = HNPlugin.main.loadLang();
 
         if (modules.getBoolean("Sudo.Enable")) {
             if (commandSender.hasPermission("hnplugin.command.sudo")) {
-
-                FileConfiguration lang = HNPlugin.main.loadLang();
 
                 if (strings.length > 1) {
                     Player pl = Bukkit.getPlayer(strings[0]);
@@ -38,10 +37,13 @@ public class Sudo implements CommandExecutor {
                         commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("WrongPlayer")
                                 .replace("%prefix%", lang.getString("Prefix"))));
                     }
+                } else {
+                    HNPlugin.main.helpmsg(commandSender);
                 }
+            } else {
+                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("NoPermission")
+                        .replace("%prefix%", lang.getString("Prefix"))));
             }
-        } else {
-            HNPlugin.main.helpmsg(commandSender);
         }
         return false;
     }
