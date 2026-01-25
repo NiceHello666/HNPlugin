@@ -23,11 +23,11 @@ public class Suicide implements CommandExecutor {
             if (commandSender.hasPermission("hnplugin.command.suicide")) {
                 if (modules.getBoolean("Suicide.Enable")) {
                     Player player = (Player) commandSender;
-                    player.setHealth(0);
                     Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', lang
                             .getString("SuicideBroadcast")
                             .replace("%prefix%", lang.getString("Prefix"))
                             .replace("%player%", commandSender.getName())));
+                    player.setHealth(0);
                     return true;
                 }
             }

@@ -12,10 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import java.util.logging.Logger;
-
 public class HNListener implements Listener {
-    Logger logger = Bukkit.getLogger();
     FileConfiguration lang = HNPlugin.main.loadLang();
     FileConfiguration modules = HNPlugin.main.loadModules();
     
@@ -24,8 +21,8 @@ public class HNListener implements Listener {
         boolean EnableJoinMessage = modules.getBoolean("JoinMessage.Enable");
         if (EnableJoinMessage) {
             String player = Join.getPlayer().getName();
-            Bukkit.getLogger().info(lang.getString("JoinMessage").replace("%player%", player).replace("&", "§").replace("%prefix%", (lang.getString("Prefix"))));
-            Join.setJoinMessage(lang.getString("JoinMessage").replace("%player%", player).replace("&", "§").replace("%prefix%", (lang.getString("Prefix"))));
+            Join.setJoinMessage(null);
+            Bukkit.broadcastMessage(lang.getString("JoinMessage").replace("%player%", player).replace("&", "§").replace("%prefix%", (lang.getString("Prefix"))));
         }
     }
 
@@ -35,7 +32,8 @@ public class HNListener implements Listener {
         boolean EnableQuitMessage = modules.getBoolean("QuitMessage.Enable");
         if (EnableQuitMessage) {
             String player2 = Quit.getPlayer().getName();
-            Quit.setQuitMessage(lang.getString("QuitMessage").replace("%player%", player2).replace("&", "§").replace("%prefix%", lang.getString("Prefix")));
+            Quit.setQuitMessage(null);
+            Bukkit.broadcastMessage(lang.getString("QuitMessage").replace("%player%", player2).replace("&", "§").replace("%prefix%", lang.getString("Prefix")));
         }
     }
 

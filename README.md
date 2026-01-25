@@ -128,7 +128,7 @@ WrongPlayer: "%prefix% &c未找到玩家"
 
 SudoFeedBack: "%prefix% &a你已使 &e%sudoplayer% &a强制执行 &e%sudocmd%"
 
-# 以控制台身份执行指令反馈 [可用变量符: %consolecmd% - 执行的指令,%prefix% - 插件前缀]
+# 以控制台身份执行指令反馈(/console) [可用变量符: %consolecmd% - 执行的指令,%prefix% - 插件前缀]
 
 ConsoleCommandFeedBack: "%prefix% &a你以控制台身份执行了指令 &e%consolecmd%"
 

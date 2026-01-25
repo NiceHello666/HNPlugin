@@ -27,9 +27,8 @@ public class HNCommand implements CommandExecutor {
                     }
                 }
                 Bukkit.broadcastMessage(
-                        ChatColor.translateAlternateColorCodes('&', message.toString()
-                        +
-                        lang.getString("BCPrefix").replace("%prefix%", lang.getString("Prefix")))
+                        ChatColor.translateAlternateColorCodes('&',
+                        lang.getString("BCPrefix").replace("%prefix%", lang.getString("Prefix")) + message.toString())
                 );
 
                 return true;
