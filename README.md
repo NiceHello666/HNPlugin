@@ -20,6 +20,10 @@
 
 # 如果你是旧版到v1.4的升级，你需要手动补全在lang.yml与modules.yml缺失的项，或者重置文件
 
+# 插件数据
+
+![插件数据](https://bstats.org/signatures/bukkit/HNPlugin.svg)
+
 
 
 ## modules.yml
