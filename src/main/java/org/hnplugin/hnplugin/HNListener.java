@@ -46,9 +46,9 @@ public class HNListener implements Listener {
         String prefix = ChatColor.translateAlternateColorCodes('&', lang.getString("Prefix"));
         if (EnableDeathBroadcast) {
             String WorldDisplay = death_loc.getWorld().getName();
-            for(String display : lang.getConfigurationSection("WorldDisplayList").getKeys(false)) {
-                if(death_loc.getWorld().getName() == display) {
-                    WorldDisplay = lang.getString("WorldDisplayList." + display, death_loc.getWorld().getName());
+            for(String s : lang.getConfigurationSection("WorldDisplayList").getKeys(false)) {
+                if(death_loc.getWorld().getName().equals(s)) {
+                    WorldDisplay = lang.getString("WorldDisplayList." + s);
                     break;
                 }
             }
@@ -64,17 +64,17 @@ public class HNListener implements Listener {
 
         if (EnableDeathMsg) {
             String WorldDisplay = death_loc.getWorld().getName();
-            for(String display : lang.getConfigurationSection("WorldDisplayList").getKeys(false)) {
-                if(death_loc.getWorld().getName() == display) {
-                    WorldDisplay = lang.getString("WorldDisplayList." + display, death_loc.getWorld().getName());
+            for(String s : lang.getConfigurationSection("WorldDisplayList").getKeys(false)) {
+                if(death_loc.getWorld().getName().equals(s)) {
+                    WorldDisplay = lang.getString("WorldDisplayList." + s);
                     break;
                 }
             }
             String privateMsg = ChatColor.translateAlternateColorCodes('&', lang.getString("DeathMsg")
-                    .replace("%death_y%", String.valueOf(death_loc.getBlockY()))
                     .replace("%player%", playerName)
                     .replace("%prefix%", prefix)
                     .replace("%death_x%", String.valueOf(death_loc.getBlockX()))
+                    .replace("%death_y%", String.valueOf(death_loc.getBlockY()))
                     .replace("%death_z%", String.valueOf(death_loc.getBlockZ()))
                     .replace("%death_world%", WorldDisplay));
             Death.getEntity().sendMessage(privateMsg);
