@@ -1,0 +1,15 @@
+me/hnplugin/hnplugin/command/TpaHere.class
+me/hnplugin/hnplugin/HNPlugin.class
+me/hnplugin/hnplugin/command/TpaAccept.class
+me/hnplugin/hnplugin/command/Sudo.class
+me/hnplugin/hnplugin/command/HNCommand.class
+me/hnplugin/hnplugin/manager/config.class
+me/hnplugin/hnplugin/listener/HNListener.class
+me/hnplugin/hnplugin/manager/TPAManager$TPARequestType.class
+me/hnplugin/hnplugin/manager/TPAManager.class
+me/hnplugin/hnplugin/manager/TPAManager$TPARequest.class
+me/hnplugin/hnplugin/command/Tpa.class
+me/hnplugin/hnplugin/command/Console.class
+me/hnplugin/hnplugin/util.class
+me/hnplugin/hnplugin/command/Suicide.class
+me/hnplugin/hnplugin/command/TpaDeny.class

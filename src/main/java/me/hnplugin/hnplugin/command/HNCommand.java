@@ -1,16 +1,19 @@
-package org.hnplugin.hnplugin.command;
+package me.hnplugin.hnplugin.command;
 
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
+import me.hnplugin.hnplugin.manager.config;
+import me.hnplugin.hnplugin.util;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.hnplugin.hnplugin.HNPlugin;
+import org.bukkit.entity.Player;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HNCommand implements CommandExecutor {
 
-    FileConfiguration lang = HNPlugin.loadLang();
+    FileConfiguration lang = config.loadLang();
 
 
     @Override
@@ -24,33 +27,36 @@ public class HNCommand implements CommandExecutor {
                         message.append(" ");
                     }
                 }
-                Bukkit.broadcastMessage(
-                        ChatColor.translateAlternateColorCodes('&',
-                        lang.getString("BCPrefix").replace("%prefix%", lang.getString("Prefix")) + message.toString())
+                Player player = commandSender instanceof Player ? (Player) commandSender : null;
+                util.broadcastMessage(
+                        String.join("", lang.getStringList("BCPrefix")).replace("%prefix%", lang.getStringList("Prefix").get(0)) + message.toString(),
+                        player
                 );
 
                 return true;
             }
             if (strings.length == 1 && strings[0].equals("help")) {
-                HNPlugin.helpmsg(commandSender);
+                config.helpmsg(commandSender);
                 return true;
             }
             if (strings.length == 1 && strings[0].equals("reload")) {
                 java.util.logging.Logger logger = java.util.logging.Logger.getLogger("");
                 java.util.logging.Level oldLevel = logger.getLevel();
                 logger.setLevel(java.util.logging.Level.OFF);
-                HNPlugin.saveResource("lang.yml", false);
-                HNPlugin.saveResource("modules.yml", false);
+                config.saveResource("lang.yml", false);
+                config.saveResource("modules.yml", false);
                 logger.setLevel(oldLevel);
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("ReloadMessage")
-                        .replace("%prefix%", lang.getString("Prefix"))));
+                List<String> reloadMsg = new ArrayList<>(lang.getStringList("ReloadMessage"));
+                reloadMsg.replaceAll(line -> line.replace("%prefix%", lang.getStringList("Prefix").get(0)));
+                util.sendMessage(commandSender, reloadMsg);
                 return true;
             }
-            HNPlugin.helpmsg(commandSender);
+            config.helpmsg(commandSender);
             return true;
         }
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("NoPermission")
-                .replace("%prefix%", lang.getString("Prefix"))));
+        List<String> noPermMsg = new ArrayList<>(lang.getStringList("NoPermission"));
+        noPermMsg.replaceAll(line -> line.replace("%prefix%", lang.getStringList("Prefix").get(0)));
+        util.sendMessage(commandSender, noPermMsg);
         return true;
     }
 }

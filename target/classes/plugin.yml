@@ -1,5 +1,5 @@
 name: HNPlugin
-version: '${project.version}'
+version: '1.4.1'
 author: NiceHello
 main: me.hnplugin.hnplugin.HNPlugin
 softdepend: [PlaceholderAPI]

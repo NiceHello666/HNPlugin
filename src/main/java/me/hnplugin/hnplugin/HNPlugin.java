@@ -1,48 +1,22 @@
-package org.hnplugin.hnplugin;
+package me.hnplugin.hnplugin;
 
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.hnplugin.hnplugin.command.Console;
-import org.hnplugin.hnplugin.command.HNCommand;
-import org.hnplugin.hnplugin.command.Sudo;
-import org.hnplugin.hnplugin.command.Suicide;
-import org.hnplugin.hnplugin.listener.HNListener;
-
-import java.io.File;
+import me.hnplugin.hnplugin.command.Console;
+import me.hnplugin.hnplugin.command.HNCommand;
+import me.hnplugin.hnplugin.command.Sudo;
+import me.hnplugin.hnplugin.command.Suicide;
+import me.hnplugin.hnplugin.command.Tpa;
+import me.hnplugin.hnplugin.command.TpaAccept;
+import me.hnplugin.hnplugin.command.TpaDeny;
+import me.hnplugin.hnplugin.command.TpaHere;
+import me.hnplugin.hnplugin.listener.HNListener;
+import me.hnplugin.hnplugin.manager.config;
 
 public final class HNPlugin extends JavaPlugin {
 
-    static HNPlugin main;
-
-    public void saveResource(String filename, boolean replace) {
-        main.saveResource(filename, replace);
-    }
-
-    public static FileConfiguration loadModules() {
-        File modulesfile = new File("modules.yml");
-        FileConfiguration modules = YamlConfiguration.loadConfiguration(modulesfile);
-        return modules;
-    }
-    public static FileConfiguration loadLang() {
-        File langfile = new File("lang.yml");
-        FileConfiguration lang = YamlConfiguration.loadConfiguration(langfile);
-        return lang;
-    }
-    public static void helpmsg(CommandSender commandSender) {
-        FileConfiguration lang = loadLang();
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("Prefix") + " &6指令帮助"));
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/hnp help - 显示这条消息"));
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/hnp reload - 重载插件"));
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/hnp bc <内容> - 发送公告"));
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/suicide - 原地自杀"));
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/sudo <玩家> <指令,不需要斜杠> - 强制玩家执行指令"));
-        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/console <指令,不需要斜杠> - 以控制台身份执行指令"));
-    }
+    public static HNPlugin main;
 
     @Override
     public void onEnable() {
@@ -54,16 +28,20 @@ public final class HNPlugin extends JavaPlugin {
         logger.setLevel(java.util.logging.Level.OFF);
         this.saveResource("lang.yml", false);
         this.saveResource("modules.yml", false);
-        logger.setLevel(oldLevel);
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lHNPlugin &f&f> &a插件已启动 &7| &e作者: NiceHello"));
+        config.loadLang();
+        util.sendMessage(Bukkit.getConsoleSender(), "&b&lHNPlugin &f&f> &a插件已启动 &7| &e作者: NiceHello");
         Bukkit.getPluginCommand("hnplugin").setExecutor(new HNCommand());
         Bukkit.getPluginCommand("suicide").setExecutor(new Suicide());
         Bukkit.getPluginCommand("sudo").setExecutor(new Sudo());
         Bukkit.getPluginCommand("console").setExecutor(new Console());
+        Bukkit.getPluginCommand("tpa").setExecutor(new Tpa());
+        Bukkit.getPluginCommand("tpahere").setExecutor(new TpaHere());
+        Bukkit.getPluginCommand("tpaccept").setExecutor(new TpaAccept());
+        Bukkit.getPluginCommand("tpdeny").setExecutor(new TpaDeny());
         Bukkit.getPluginManager().registerEvents(new HNListener(), this);
     }
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&b&lHNPlugin &f&7> &c插件已关闭，欢迎下次使用!"));
+        util.sendMessage(Bukkit.getConsoleSender(), "&b&lHNPlugin &f&7> &c插件已关闭，欢迎下次使用!");
     }
 }

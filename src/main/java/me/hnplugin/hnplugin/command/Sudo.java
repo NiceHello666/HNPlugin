@@ -1,20 +1,23 @@
-package org.hnplugin.hnplugin.command;
+package me.hnplugin.hnplugin.command;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.hnplugin.hnplugin.HNPlugin;
+import me.hnplugin.hnplugin.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import me.hnplugin.hnplugin.manager.config;
 public class Sudo implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 
-        FileConfiguration modules = HNPlugin.main.loadModules();
-        FileConfiguration lang = HNPlugin.main.loadLang();
+        FileConfiguration modules = config.loadModules();
+        FileConfiguration lang = config.loadLang();
 
         if (modules.getBoolean("Sudo.Enable")) {
             if (commandSender.hasPermission("hnplugin.command.sudo")) {
@@ -30,23 +33,25 @@ public class Sudo implements CommandExecutor {
                             }
                         }
                         Bukkit.dispatchCommand(pl, cmd.toString());
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("SudoFeedBack")
-                                .replace("%prefix%", lang.getString("Prefix"))
+                        List<String> sudoMsg = new ArrayList<>(lang.getStringList("SudoFeedBack"));
+                        sudoMsg.replaceAll(line -> line.replace("%prefix%", lang.getStringList("Prefix").get(0))
                                 .replace("%sudoplayer%", strings[0])
-                                .replace("%sudocmd%", cmd.toString())));
+                                .replace("%sudocmd%", cmd.toString()));
+                        util.sendMessage(commandSender, sudoMsg);
                     } else {
-                        commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("WrongPlayer")
-                                .replace("%prefix%", lang.getString("Prefix"))));
+                        List<String> wrongPlayerMsg = new ArrayList<>(lang.getStringList("WrongPlayer"));
+                        wrongPlayerMsg.replaceAll(line -> line.replace("%prefix%", lang.getStringList("Prefix").get(0)));
+                        util.sendMessage(commandSender, wrongPlayerMsg);
                     }
                 } else {
-                    HNPlugin.main.helpmsg(commandSender);
+                    config.helpmsg(commandSender);
                 }
             } else {
-                commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("NoPermission")
-                        .replace("%prefix%", lang.getString("Prefix"))));
+                List<String> noPermMsg = new ArrayList<>(lang.getStringList("NoPermission"));
+                noPermMsg.replaceAll(line -> line.replace("%prefix%", lang.getStringList("Prefix").get(0)));
+                util.sendMessage(commandSender, noPermMsg);
             }
         }
         return false;
     }
 }
-
