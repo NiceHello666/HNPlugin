@@ -7,6 +7,11 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.hnplugin.hnplugin.command.Console;
+import org.hnplugin.hnplugin.command.HNCommand;
+import org.hnplugin.hnplugin.command.Sudo;
+import org.hnplugin.hnplugin.command.Suicide;
+import org.hnplugin.hnplugin.listener.HNListener;
 
 import java.io.File;
 
@@ -14,17 +19,21 @@ public final class HNPlugin extends JavaPlugin {
 
     static HNPlugin main;
 
-    public FileConfiguration loadModules() {
-        File modulesfile = new File(org.hnplugin.hnplugin.HNPlugin.getPlugin(org.hnplugin.hnplugin.HNPlugin.class).getDataFolder(), "modules.yml");
+    public void saveResource(String filename, boolean replace) {
+        main.saveResource(filename, replace);
+    }
+
+    public static FileConfiguration loadModules() {
+        File modulesfile = new File("modules.yml");
         FileConfiguration modules = YamlConfiguration.loadConfiguration(modulesfile);
         return modules;
     }
-    public FileConfiguration loadLang() {
-        File langfile = new File(org.hnplugin.hnplugin.HNPlugin.getPlugin(org.hnplugin.hnplugin.HNPlugin.class).getDataFolder(), "lang.yml");
+    public static FileConfiguration loadLang() {
+        File langfile = new File("lang.yml");
         FileConfiguration lang = YamlConfiguration.loadConfiguration(langfile);
         return lang;
     }
-    public void helpmsg(CommandSender commandSender) {
+    public static void helpmsg(CommandSender commandSender) {
         FileConfiguration lang = loadLang();
         commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', lang.getString("Prefix") + " &6指令帮助"));
         commandSender.sendMessage(ChatColor.translateAlternateColorCodes('&', "&e/hnp help - 显示这条消息"));

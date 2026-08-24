@@ -1,4 +1,4 @@
-package org.hnplugin.hnplugin;
+package org.hnplugin.hnplugin.command;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.hnplugin.hnplugin.HNPlugin;
 
 public class Suicide implements CommandExecutor {
 
